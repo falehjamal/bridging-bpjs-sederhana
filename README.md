@@ -4,7 +4,7 @@
 Berikut adalah beberapa tangkapan layar dari aplikasi:
 
 ![Halaman Utama](./screenshot.jpg)
-*Gambar 1: Halaman utama aplikasi*
+*Gambar : Halaman utama aplikasi*
 
 ## Deskripsi
 
@@ -14,11 +14,14 @@ Aplikasi ini adalah sebuah alat bantu untuk memeriksa status peserta BPJS. Denga
 
 
 1. Clone atau download repository ini.
-2. Instal dependensi menggunakan Composer:
+2. Instal dependensi dan jalan script post-update-cmd menggunakan Composer:
    ```bash
    composer install
    ```
-3. Konfigurasi file `authApi.php` dengan menggunakan key yang sudah di dapat dari BPJS.
+   ```bash
+   composer run-script post-update-cmd
+   ```
+3. Copy file `.env.example` ke `.env` dan isi dengan key yang sudah di dapat dari BPJS.
 4. Jalankan server lokal:
    ```bash  
    php -S localhost:8000

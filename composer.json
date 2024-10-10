@@ -3,13 +3,16 @@
         "najmulfaiz/bpjs": "^1.3",
         "nesbot/carbon": "^2.70",
         "twbs/bootstrap": "^5.3",
-        "components/jquery": "^3.7"
+        "components/jquery": "^3.7",
+        "vlucas/phpdotenv": "^5.6"
     },
     "scripts": {
         "post-update-cmd": [
-            "cp -R vendor/twbs/bootstrap/dist/css/* public/assets/css/",
-            "cp -R vendor/twbs/bootstrap/dist/js/* public/assets/js/",
-            "cp -R vendor/components/jquery/jquery.min.js public/assets/js/"
+            "php -r \"if (!file_exists('public')) { mkdir('public', 0755, true); }\"",
+            "php -r \"if (!file_exists('public/assets')) { mkdir('public/assets', 0755, true); }\"",
+            "php -r \"if (!file_exists('public/assets/css')) { mkdir('public/assets/css', 0755, true); }\"",
+            "php -r \"if (!file_exists('public/assets/js')) { mkdir('public/assets/js', 0755, true); }\"",
+            "php -r \"if (PHP_OS_FAMILY === 'Windows') { exec('xcopy /E /I vendor\\twbs\\bootstrap\\dist\\css public\\assets\\css'); exec('xcopy /E /I vendor\\twbs\\bootstrap\\dist\\js public\\assets\\js'); copy('vendor\\components\\jquery\\jquery.min.js', 'public\\assets\\js\\jquery.min.js'); } elseif (PHP_OS_FAMILY === 'Darwin') { exec('cp -R vendor/twbs/bootstrap/dist/css/* public/assets/css/'); exec('cp -R vendor/twbs/bootstrap/dist/js/* public/assets/js/'); exec('cp vendor/components/jquery/jquery.min.js public/assets/js/'); } else { exec('cp -R vendor/twbs/bootstrap/dist/css/* public/assets/css/'); exec('cp -R vendor/twbs/bootstrap/dist/js/* public/assets/js/'); exec('cp vendor/components/jquery/jquery.min.js public/assets/js/'); }\""
         ]
     }
 }
