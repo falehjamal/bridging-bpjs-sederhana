@@ -1,4 +1,10 @@
 # Cek Peserta BPJS
+## Tangkapan Layar
+
+Berikut adalah beberapa tangkapan layar dari aplikasi:
+
+![Halaman Utama](./screenshot.jpg)
+*Gambar 1: Halaman utama aplikasi*
 
 ## Deskripsi
 

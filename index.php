@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,49 +8,50 @@
     <script src="public/assets/js/jquery.min.js"></script>
     <script src="public/assets/js/bootstrap.bundle.min.js"></script>
     <style>
-        body{
-            margin-top:100px;
-            background-color: #aeaeae;
-        font-family: sans-serif;
-        }
+body{
+    margin-top:100px;
+    background-color: #aeaeae;
+  font-family: sans-serif;
+}
 
-        :root {
-        --radius: 50;
-        --PI: 3.14159265358979;
-        --circumference: calc(var(--PI) * var(--radius) * 2px)
-        }
-        .container {
-        display: block;
-        flex-flow: column; 
-        align-items: center;
-        }
-        h1 {
-        color: #444;
-        }
-        .circle-svg {
-        background: #fff;
-        }
-        .circle-svg circle {
-        stroke: red;
-        stroke-width: 4;
-        fill: transparent;
-        transform-origin: center;
-        stroke-dasharray: var(--circumference);
-        animation: spinner 2s ease-out infinite;
-        }
+:root {
+  --radius: 50;
+  --PI: 3.14159265358979;
+  --circumference: calc(var(--PI) * var(--radius) * 2px)
+}
+.container {
+  display: block;
+  flex-flow: column; 
+  align-items: center;
+}
+h1 {
+  color: #444;
+}
+.circle-svg {
+  background: #fff;
+}
+.circle-svg circle {
+  stroke: red;
+  stroke-width: 4;
+  fill: transparent;
+  transform-origin: center;
+  stroke-dasharray: var(--circumference);
+  animation: spinner 2s ease-out infinite;
+}
 
-        @keyframes spinner {
-        from {
-            stroke-dashoffset: var(--circumference);
-            stroke: red;
-            transform: rotateZ(0deg)
-        }
-        to {
-            stroke-dashoffset: calc(var(--circumference) * -1);
-            stroke: green;
-            transform: rotateZ(720deg)
-        }
-        }
+@keyframes spinner {
+  from {
+    stroke-dashoffset: var(--circumference);
+    stroke: red;
+    transform: rotateZ(0deg)
+  }
+  to {
+    stroke-dashoffset: calc(var(--circumference) * -1);
+    stroke: green;
+    transform: rotateZ(720deg)
+  }
+}
+
     </style>
 </head>
 <body>
@@ -70,10 +71,12 @@
 
 
                             <!-- loading -->
-                    <div class="container" id="loading" style="display: none;">
-                    <svg class="circle-svg" height="200" width="200">
-                    <circle cx="100" cy="100" r="50"></circle>
-                    </svg>
+                    <div id="loading" style="display: none;">
+                    <div class="container d-flex justify-content-center align-items-center">
+                        <svg class="circle-svg" height="200" width="200">
+                            <circle cx="100" cy="100" r="50"></circle>
+                        </svg>
+                    </div>
                     </div>
 
 
@@ -90,16 +93,16 @@
 <script>
     $(document).ready(function(){
         $('form').submit(function(e){
-            e.preventDefault();
-            $('#loading').show();
-            $(".isi").empty();
-            var nik = $('input[type="text"]').val();
+    e.preventDefault();
+    $('#loading').show();
+    $(".isi").empty();
+    var nik = $('input[type="text"]').val();
 
-            $.ajax({
-                url: 'proses.php',
-                method: 'POST',
-                data: {'nik':nik},
-                success: function(response) {
+    $.ajax({
+        url: 'proses.php',
+        method: 'POST',
+        data: {'nik':nik},
+        success: function(response) {
             var res = $.parseJSON(response);
 
             if (res.metaData.code == 201) {
