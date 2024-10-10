@@ -1,19 +1,29 @@
 <?php
 require './vendor/autoload.php';
-
-use NajmulFaiz\Bpjs\VClaim\Peserta;
-use NajmulFaiz\Bpjs\VClaim\Referensi;
-use NajmulFaiz\Bpjs\VClaim\RencanaKontrol;
-
 require 'authApi.php';
 
-$nik = @$_POST['nik'];
-$date =  date("Y-m-d");
-// $referensi = new NajmulFaiz\Bpjs\VClaim\Referensi($vclaim_conf);
-// $surat = new RencanaKontrol($vclaim_conf);
+use NajmulFaiz\Bpjs\VClaim\Peserta;
+
+$date = date("Y-m-d");
+$nik = $_POST['nik'] ?? '';
 $peserta = new Peserta($vclaim_conf);
-$data = $peserta->getByNIK($nik,$date);
+
+switch (strlen($nik)) {
+    case 13:
+        $data = $peserta->getByNoKartu($nik, $date);
+        break;
+    case 16:
+        $data = $peserta->getByNIK($nik, $date);
+        break;
+    default:
+        $data = [
+            "metaData" => [
+                "code" => 401,
+                "message" => "Nomor Tidak Valid"
+            ],
+        ];
+        break;
+}
 
 echo json_encode($data);
-
 ?>

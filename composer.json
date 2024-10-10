@@ -1,5 +1,15 @@
 {
     "require": {
-        "najmulfaiz/bpjs": "^1.3"
+        "najmulfaiz/bpjs": "^1.3",
+        "nesbot/carbon": "^2.70",
+        "twbs/bootstrap": "^5.3",
+        "components/jquery": "^3.7"
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "cp -R vendor/twbs/bootstrap/dist/css/* public/assets/css/",
+            "cp -R vendor/twbs/bootstrap/dist/js/* public/assets/js/",
+            "cp -R vendor/components/jquery/jquery.min.js public/assets/js/"
+        ]
     }
 }

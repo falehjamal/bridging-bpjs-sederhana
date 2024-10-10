@@ -1,2 +1,4 @@
 /vendor
 authApi.php
+public/assets/css/*
+public/assets/js/*
