@@ -5,6 +5,7 @@ use NajmulFaiz\Bpjs\VClaim\Peserta;
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+
 $vclaim_conf = [
     'cons_id' => $_ENV['CONS_ID'],
     'secret_key' => $_ENV['SECRET_KEY'],
@@ -35,4 +36,3 @@ switch (strlen($nik)) {
 }
 
 echo json_encode($data);
-?>
