@@ -3,6 +3,30 @@ require './vendor/autoload.php';
 
 use NajmulFaiz\Bpjs\VClaim\Peserta;
 
+// Cek apakah permintaan berasal dari localhost dan hanya bisa request menggunakan AJAX
+if ($_SERVER['REMOTE_ADDR'] !== '127.0.0.1' && $_SERVER['REMOTE_ADDR'] !== '::1') {
+    http_response_code(403);
+    echo json_encode(["metaData" => ["code" => 403, "message" => "Akses ditolak"]]);
+    exit;
+}
+
+// Cek apakah permintaan adalah AJAX
+if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest') {
+    http_response_code(403);
+    echo json_encode(["metaData" => ["code" => 403, "message" => "Akses ditolak"]]);
+    exit;
+}
+
+$date = date("Y-m-d");
+$nik = $_POST['nik'] ?? '';
+
+// Validasi inputan $_POST['nik']
+if (empty($nik) || !is_numeric($nik)) {
+    http_response_code(400);
+    echo json_encode(["metaData" => ["code" => 400, "message" => "Input NIK tidak valid"]]);
+    exit;
+}
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
@@ -14,9 +38,6 @@ $vclaim_conf = [
     'service_name' => $_ENV['SERVICE_NAME']
 ];
 $peserta = new Peserta($vclaim_conf);
-
-$date = date("Y-m-d");
-$nik = $_POST['nik'] ?? '';
 
 switch (strlen($nik)) {
     case 13:
