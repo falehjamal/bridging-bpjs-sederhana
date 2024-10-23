@@ -42,7 +42,7 @@ composer run-script post-update-cmd
 
 ```
 
-3. Copy file `.env.example` ke `.env` dan isi dengan key yang sudah di dapat dari BPJS.
+3. Isikan .env dengan key yang sudah didapat dari BPJS.
 
 4. Jalankan server lokal:
 
@@ -57,8 +57,6 @@ php -S localhost:8000
   
 
 ## Kontribusi
-
-  
 
 Kontribusi untuk proyek ini dapat dilakukan melalui GitHub. Silakan fork repository ini dan buatkan pull request untuk setiap perubahan yang ingin Anda lakukan.
 
